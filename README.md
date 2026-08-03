@@ -1,1 +1,255 @@
-# Palettepro
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Palette Pro</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<header class="topbar">
+
+<div class="logo">
+
+🎨 <span>Palette Pro</span>
+
+</div>
+
+<div class="topbuttons">
+
+<button id="nuevoProyecto">Nuevo</button>
+
+<button id="guardarProyecto">Guardar</button>
+
+<button id="modoOscuro">🌙</button>
+
+</div>
+
+</header>
+
+<div class="contenedor">
+
+<!-- PANEL IZQUIERDO -->
+
+<aside class="sidebar">
+
+<h2>Colores Base</h2>
+
+<div class="selector">
+
+<label>Color 1</label>
+
+<input type="color" id="color1" value="#2563EB">
+
+<input type="text" id="hex1" value="#2563EB">
+
+</div>
+
+<div class="selector">
+
+<label>Color 2</label>
+
+<input type="color" id="color2" value="#F97316">
+
+<input type="text" id="hex2" value="#F97316">
+
+</div>
+
+<div class="selector">
+
+<label>Color 3</label>
+
+<input type="color" id="color3" value="#14B8A6">
+
+<input type="text" id="hex3" value="#14B8A6">
+
+</div>
+
+<div class="selector">
+
+<label>Color 4</label>
+
+<input type="color" id="color4" value="#8B5CF6">
+
+<input type="text" id="hex4" value="#8B5CF6">
+
+</div>
+
+<div class="selector">
+
+<label>Color 5</label>
+
+<input type="color" id="color5" value="#FACC15">
+
+<input type="text" id="hex5" value="#FACC15">
+
+</div>
+
+<div class="selector">
+
+<label>Color 6</label>
+
+<input type="color" id="color6" value="#EF4444">
+
+<input type="text" id="hex6" value="#EF4444">
+
+</div>
+
+<button id="generar">
+
+Generar 5 Paletas
+
+</button>
+
+</aside>
+
+<!-- CENTRO -->
+
+<main class="preview">
+
+<h2>Vista previa</h2>
+
+<nav class="navbar">
+
+<div class="marca">
+
+LOGO
+
+</div>
+
+<ul>
+
+<li>Inicio</li>
+
+<li>Servicios</li>
+
+<li>Productos</li>
+
+<li>Contacto</li>
+
+</ul>
+
+</nav>
+
+<section class="hero">
+
+<h1>
+
+Diseña páginas increíbles
+
+</h1>
+
+<p>
+
+Visualiza tu paleta en tiempo real.
+
+</p>
+
+<button>
+
+Comenzar
+
+</button>
+
+</section>
+
+<section class="cards">
+
+<div class="card">
+
+<h3>Tarjeta 1</h3>
+
+<p>
+
+Contenido de ejemplo.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Tarjeta 2</h3>
+
+<p>
+
+Contenido de ejemplo.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Tarjeta 3</h3>
+
+<p>
+
+Contenido de ejemplo.
+
+</p>
+
+</div>
+
+</section>
+
+</main>
+
+<!-- PANEL DERECHO -->
+
+<aside class="exportar">
+
+<h2>Exportar</h2>
+
+<button>CSS</button>
+
+<button>JSON</button>
+
+<button>Variables CSS</button>
+
+<button>Tailwind</button>
+
+<button>Bootstrap</button>
+
+<button>SCSS</button>
+
+</aside>
+
+</div>
+
+<footer>
+
+<h2>
+
+Paletas Generadas
+
+</h2>
+
+<div id="paletas">
+
+<div class="paleta"></div>
+
+<div class="paleta"></div>
+
+<div class="paleta"></div>
+
+<div class="paleta"></div>
+
+<div class="paleta"></div>
+
+</div>
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
