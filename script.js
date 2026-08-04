@@ -11,12 +11,17 @@ Guárdala como script.js en la misma carpeta donde están index.html y style.css
 // Obtener todos los selectores
 const colores = [
 document.getElementById("color1"),
+   
 document.getElementById("color2"),
 document.getElementById("color3"),
 document.getElementById("color4"),
 document.getElementById("color5"),
 document.getElementById("color6")
-];
+];const colorPrincipal = document.getElementById("color1").value;
+
+const analoga = generarAnaloga(colorPrincipal);
+
+console.log(analoga);
 
 // Obtener los HEX
 const hex = [
