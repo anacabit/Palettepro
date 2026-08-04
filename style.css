@@ -2,7 +2,11 @@
    PALETTE PRO v0.1
    style.css
 =========================== */
-
+:root{
+--primary:#2563EB;
+--secondary:#14B8A6;
+--accent:#F97316;
+}
 *{
     margin:0;
     padding:0;
