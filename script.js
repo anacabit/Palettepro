@@ -1,178 +1,174 @@
-¡Sí! Este es el archivo más importante. El script.js hará que Palette Pro empiece a funcionar.
+/* ==========================================
+   Palette Pro
+   script.js v0.2
+========================================== */
 
-Te dejo una versión 0.1 funcional.
+// ==============================
+// SELECTORES
+// ==============================
 
-Guárdala como script.js en la misma carpeta donde están index.html y style.css.
-
-/* ===========================
-   PALETTE PRO v0.1
-=========================== */
-
-// Obtener todos los selectores
 const colores = [
-document.getElementById("color1"),
-   
-document.getElementById("color2"),
-document.getElementById("color3"),
-document.getElementById("color4"),
-document.getElementById("color5"),
-document.getElementById("color6")
-];const colorPrincipal = document.getElementById("color1").value;
-
-const analoga = generarAnaloga(colorPrincipal);
-
-console.log(analoga);
-
-// Obtener los HEX
-const hex = [
-document.getElementById("hex1"),
-document.getElementById("hex2"),
-document.getElementById("hex3"),
-document.getElementById("hex4"),
-document.getElementById("hex5"),
-document.getElementById("hex6")
+    document.getElementById("color1"),
+    document.getElementById("color2"),
+    document.getElementById("color3"),
+    document.getElementById("color4"),
+    document.getElementById("color5"),
+    document.getElementById("color6")
 ];
 
-// Sincronizar rueda y HEX
+const hex = [
+    document.getElementById("hex1"),
+    document.getElementById("hex2"),
+    document.getElementById("hex3"),
+    document.getElementById("hex4"),
+    document.getElementById("hex5"),
+    document.getElementById("hex6")
+];
+
+// ==============================
+// SINCRONIZAR COLOR ↔ HEX
+// ==============================
+
 colores.forEach((color,index)=>{
 
-color.addEventListener("input",()=>{
+    color.addEventListener("input",()=>{
 
-hex[index].value=color.value;
+        hex[index].value=color.value;
 
-actualizarVista();
+        actualizarVista();
+
+    });
 
 });
 
-});
-
-// Escribir HEX manualmente
 hex.forEach((campo,index)=>{
 
-campo.addEventListener("input",()=>{
+    campo.addEventListener("input",()=>{
 
-if(/^#[0-9A-Fa-f]{6}$/.test(campo.value)){
+        if(/^#[0-9A-Fa-f]{6}$/.test(campo.value)){
 
-colores[index].value=campo.value;
+            colores[index].value=campo.value;
 
-actualizarVista();
+            actualizarVista();
 
-}
+        }
+
+    });
 
 });
 
-});
+// ==============================
+// VISTA PREVIA
+// ==============================
 
-// Vista previa
 function actualizarVista(){
 
-const principal=colores[0].value;
-const secundario=colores[1].value;
-const fondo=colores[2].value;
+    const principal=colores[0].value;
+    const secundario=colores[1].value;
+    const fondo=colores[2].value;
 
-document.querySelector(".hero button").style.background=principal;
+    document.querySelector(".navbar").style.background=principal;
 
-document.querySelector(".navbar").style.background=principal;
+    document.querySelector(".hero button").style.background=principal;
 
-document.querySelectorAll(".card").forEach(card=>{
+    document.querySelectorAll(".card").forEach(card=>{
 
-card.style.borderTop="6px solid "+secundario;
+        card.style.borderTop="6px solid "+secundario;
 
-});
+    });
 
-document.querySelector(".preview").style.background=fondo;
+    document.querySelector(".preview").style.background=fondo;
 
 }
 
-// Generar 5 paletas
+// ==============================
+// GENERAR PALETAS
+// ==============================
+
 document.getElementById("generar").addEventListener("click",()=>{
 
-const contenedor=document.getElementById("paletas");
+    const colorPrincipal=colores[0].value;
 
-contenedor.innerHTML="";
+    const analoga=generarAnaloga(colorPrincipal);
 
-for(let i=0;i<5;i++){
+    const triadica=generarTriadica(colorPrincipal);
 
-let fila=document.createElement("div");
+    const complementario=generarComplementaria(colorPrincipal);
 
-fila.style.display="flex";
+    const contenedor=document.getElementById("paletas");
 
-fila.style.marginBottom="10px";
+    contenedor.innerHTML="";
 
-for(let j=0;j<5;j++){
+    mostrarFila("Análoga",analoga);
 
-let c=document.createElement("div");
+    mostrarFila("Triádica",triadica);
 
-c.style.width="70px";
+    mostrarFila("Complementaria",[
 
-c.style.height="50px";
+        colorPrincipal,
 
-c.style.marginRight="6px";
+        complementario
 
-let color="#"+Math.floor(Math.random()*16777215).toString(16).padStart(6,"0");
-
-c.style.background=color;
-
-c.title=color;
-
-// Copiar color
-c.onclick=function(){
-
-navigator.clipboard.writeText(color);
-
-alert("Color copiado: "+color);
-
-};
-
-fila.appendChild(c);
-
-}
-
-contenedor.appendChild(fila);
-
-}
+    ]);
 
 });
 
-// Ejecutar al abrir
+// ==============================
+// DIBUJAR UNA PALETA
+// ==============================
+
+function mostrarFila(nombre,paleta){
+
+    const contenedor=document.getElementById("paletas");
+
+    const titulo=document.createElement("h3");
+
+    titulo.textContent=nombre;
+
+    contenedor.appendChild(titulo);
+
+    const fila=document.createElement("div");
+
+    fila.style.display="flex";
+
+    fila.style.gap="8px";
+
+    fila.style.marginBottom="20px";
+
+    paleta.forEach(color=>{
+
+        const bloque=document.createElement("div");
+
+        bloque.style.width="80px";
+
+        bloque.style.height="60px";
+
+        bloque.style.borderRadius="10px";
+
+        bloque.style.background=color;
+
+        bloque.style.cursor="pointer";
+
+        bloque.title=color;
+
+        bloque.onclick=function(){
+
+            navigator.clipboard.writeText(color);
+
+            alert("Copiado: "+color);
+
+        };
+
+        fila.appendChild(bloque);
+
+    });
+
+    contenedor.appendChild(fila);
+
+}
+
+// ==============================
+// INICIAR
+// ==============================
+
 actualizarVista();
-
-
----
-
-✅ Esta versión ya hace lo siguiente
-
-🎨 Cambiar los colores con la rueda.
-
-✍️ Escribir el HEX manualmente.
-
-🖥️ Cambiar la vista previa.
-
-🌈 Generar 5 paletas.
-
-📋 Copiar un color tocándolo.
-
-
-
----
-
-Lo siguiente que construiremos (v0.2)
-
-Quiero que la aplicación deje de generar colores totalmente aleatorios y pase a crear paletas inteligentes.
-
-Por ejemplo, si eliges un azul como color principal, la aplicación generará automáticamente:
-
-Complementaria.
-
-Análoga.
-
-Triádica.
-
-Monocromática.
-
-Pastel.
-
-
-Así las paletas tendrán armonía de color y serán mucho más útiles para diseño web.
-
-Creo que esa será la primera característica que hará que Palette Pro empiece a diferenciarse de otras herramientas.
